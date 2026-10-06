@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <title>DORA Metrics Dashboard</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f7f8fc;
+            color: #20232a;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #555;
+        }
+
+        .value {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🚀 DORA Metrics Dashboard</h1>
+
+<div class="subtitle">
+    GitHub Actions 기반 Software Delivery Performance
+</div>
+
+<div class="cards">
+
+    <div class="card">
+        <h3>Lead Time</h3>
+        <div class="value" id="lead-time">-</div>
+    </div>
+
+    <div class="card">
+        <h3>Deployment Frequency</h3>
+        <div class="value" id="deploy-frequency">-</div>
+    </div>
+
+    <div class="card">
+        <h3>MTTR</h3>
+        <div class="value" id="mttr">-</div>
+    </div>
+
+    <div class="card">
+        <h3>Change Failure Rate</h3>
+        <div class="value" id="failure-rate">-</div>
+    </div>
+
+</div>
+
+<div class="chart-container">
+    <h2>Deployment History</h2>
+    <canvas id="deploymentChart"></canvas>
+</div>
+
+<script>
+
+async function loadMetrics() {
+
+    const response = await fetch("../data/dora-metrics.json");
+
+    const data = await response.json();
+
+    document.getElementById("lead-time").innerText =
+        data.metrics.lead_time_minutes.toFixed(1) + " min";
+
+    document.getElementById("deploy-frequency").innerText =
+        data.metrics.deployment_frequency.toFixed(1) + " / week";
+
+    document.getElementById("mttr").innerText =
+        data.metrics.mttr_minutes.toFixed(1) + " min";
+
+    document.getElementById("failure-rate").innerText =
+        (data.metrics.change_failure_rate * 100).toFixed(1) + "%";
+
+    const deployments = data.deployments;
+
+    new Chart(
+        document.getElementById("deploymentChart"),
+        {
+            type: "bar",
+
+            data: {
+                labels: deployments.map(d => d.date),
+
+                datasets: [{
+                    label: "Deployment",
+                    data: deployments.map(() => 1)
+                }]
+            },
+
+            options: {
+                responsive: true,
+
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        }
+    );
+}
+
+loadMetrics();
+
+</script>
+
+</body>
+</html>
