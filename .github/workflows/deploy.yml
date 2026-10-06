@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - "data/**"
-      - "reports/**"
-      - "screenshots/**"
 
   workflow_dispatch:
 
@@ -17,7 +13,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "production"
+  group: "pages"
   cancel-in-progress: false
 
 jobs:
@@ -25,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     environment:
-      name: production
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
@@ -35,10 +31,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload Pages Artifact
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: "dashboard"
+          path: "."
 
       - name: Deploy to GitHub Pages
         id: deployment
