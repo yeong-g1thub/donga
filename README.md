@@ -2,7 +2,7 @@
 
 ![DORA Metrics](https://github.com/yeong-g1thub/donga/actions/workflows/metrics.yml/badge.svg)
 
-![Production Deploy](https://github.com/OWNER/REPOSITORY/actions/workflows/deploy.yml/badge.svg)
+![Production Deploy](https://github.com/yeong-g1thub/donga/actions/workflows/deploy.yml/badge.svg)
 
 # Project Name
 Achievement Tracker
