@@ -1,0 +1,113 @@
+name: DORA Metrics
+
+on:
+
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - closed
+
+  deployment_status:
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: "0 0 * * 1"
+
+
+permissions:
+  contents: write
+  actions: read
+  deployments: read
+
+
+jobs:
+
+  collect:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Collect DORA Metrics
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+
+          python3 scripts/collect_dora.py
+
+      - name: Generate Weekly Report
+        run: |
+
+          mkdir -p reports
+
+          python3 - <<'PY'
+
+          import json
+          from datetime import datetime
+
+          with open(
+              "data/dora-metrics.json",
+              encoding="utf-8"
+          ) as f:
+              data = json.load(f)
+
+          m = data["metrics"]
+
+          report = f"""# DORA Weekly Report
+
+          Generated: {data["generated_at"]}
+
+          ## Metrics
+
+          | Metric | Result |
+          |---|---:|
+          | Lead Time | {m["lead_time_minutes"]:.1f} min |
+          | Deployment Frequency | {m["deployment_frequency"]} / week |
+          | MTTR | {m["mttr_minutes"]:.1f} min |
+          | Change Failure Rate | {m["change_failure_rate"] * 100:.1f}% |
+
+          ## Interpretation
+
+          - Lead Time: average time from commit to successful production deployment.
+          - Deployment Frequency: successful production deployments during the period.
+          - MTTR: recovery time after failed deployments.
+          - Change Failure Rate: failed production deployments / total production deployments.
+          """
+
+          with open(
+              "reports/weekly-report.md",
+              "w",
+              encoding="utf-8"
+          ) as f:
+              f.write(report)
+
+          PY
+
+      - name: Upload JSON Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dora-metrics
+          path: |
+            data/dora-metrics.json
+            reports/weekly-report.md
+
+      - name: Commit Metrics
+        run: |
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/dora-metrics.json
+          git add reports/weekly-report.md
+
+          git diff --cached --quiet || \
+            git commit -m "chore: update DORA metrics"
+
+          git push
