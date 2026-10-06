@@ -31,10 +31,18 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
+      - name: Prepare Dashboard
+        run: |
+
+          mkdir -p dashboard/data
+
+          cp data/dora-metrics.json \
+             dashboard/data/dora-metrics.json
+
+      - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: "./dashboard"
+          path: "dashboard"
 
       - name: Deploy to GitHub Pages
         id: deployment
