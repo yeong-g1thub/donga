@@ -1,16 +1,22 @@
 {
-  "generated_at": "2026-10-08T12:45:23.487526+00:00",
+  "generated_at": "2026-10-08T12:45:43.025261+00:00",
   "period": {
-    "start": "2026-10-01T12:45:23.487526+00:00",
-    "end": "2026-10-08T12:45:23.487526+00:00"
+    "start": "2026-10-01T12:45:43.025261+00:00",
+    "end": "2026-10-08T12:45:43.025261+00:00"
   },
   "metrics": {
-    "lead_time_minutes": 0.83,
-    "deployment_frequency": 9,
+    "lead_time_minutes": 0.79,
+    "deployment_frequency": 10,
     "mttr_minutes": 0,
-    "change_failure_rate": 0.1818
+    "change_failure_rate": 0.1667
   },
   "deployments": [
+    {
+      "date": "2026-10-08",
+      "sha": "0db642c",
+      "status": "success",
+      "lead_time_minutes": 0.4
+    },
     {
       "date": "2026-10-07",
       "sha": "3463f59",
