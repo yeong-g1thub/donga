@@ -1,13 +1,13 @@
 # DORA Weekly Report
 
-Generated: 2026-11-01T14:59:54.288644+00:00
+Generated: 2026-11-01T15:00:14.158548+00:00
 
 ## Metrics
 
 | Metric | Result |
 |---|---:|
 | Lead Time | 0.5 min |
-| Deployment Frequency | 4 / week |
+| Deployment Frequency | 5 / week |
 | MTTR | 0.0 min |
 | Change Failure Rate | 0.0% |
 
