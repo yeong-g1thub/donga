@@ -10,12 +10,20 @@ Github Actions를 통해 4대 지표를 자동 수집 후 대시보드로 시각
 
 
 # Project Name
-Achievement Tracker
+업적 달성 도우미 (Achievement Tracker)
 
-## Features
-- Allows the current state to be recorded.
-- Allows you to check off essential goals.
-- Identifies the optimal goals for achieving accomplishments based on the current situation.
+## Major Features
+- 회원가입 및 로그인 (Create account and login)
+- 항목의 등급별•시간순 조회 (Enable items to be viewed by grade and in chronological order)
+- 항목 달성 여부 기록 (Record of whether items have been achieved)
+- 업적 달성까지의 진행률 확인 (Check progress toward achievement completion)
+- 캐릭터별 기록 저장 가능 (Records can be saved for each character)
+
+## Used tech
+- Java
+- Spring Boot
+- Thymeleaf
+- HTML / CSS
 
 ## Getting Started
 ### Prerequisites
