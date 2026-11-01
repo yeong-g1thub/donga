@@ -17,7 +17,7 @@ Github Actions를 통해 4대 지표를 자동 수집 후 대시보드로 시각
 - 항목의 등급별•시간순 조회 (Enable items to be viewed by grade and in chronological order)
 - 항목 달성 여부 기록 (Record of whether items have been achieved)
 - 업적 달성까지의 진행률 확인 (Check progress toward achievement completion)
-- 사용자별 기록 저장 (Save records by each user)
+- 캐릭터별 기록 저장 가능 (Records can be saved for each character)
 
 ## Used tech
 - Java
