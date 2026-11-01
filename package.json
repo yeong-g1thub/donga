@@ -1,0 +1,15 @@
+
+{
+  "name": "github-actions-cicd",
+  "version": "1.0.0",
+  "description": "GitHub Actions CI/CD assignment",
+  "private": true,
+  "scripts": {
+    "lint": "eslint src test",
+    "test": "node --test",
+    "build": "node scripts/build.js"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  }
+}
