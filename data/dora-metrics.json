@@ -1,16 +1,22 @@
 {
-  "generated_at": "2026-11-02T09:09:09.328295+00:00",
+  "generated_at": "2026-11-02T09:09:31.384434+00:00",
   "period": {
-    "start": "2026-10-26T09:09:09.328295+00:00",
-    "end": "2026-11-02T09:09:09.328295+00:00"
+    "start": "2026-10-26T09:09:31.384434+00:00",
+    "end": "2026-11-02T09:09:31.384434+00:00"
   },
   "metrics": {
-    "lead_time_minutes": 0.46,
-    "deployment_frequency": 13,
+    "lead_time_minutes": 0.45,
+    "deployment_frequency": 14,
     "mttr_minutes": 0,
     "change_failure_rate": 0.0
   },
   "deployments": [
+    {
+      "date": "2026-11-02",
+      "sha": "6092651",
+      "status": "success",
+      "lead_time_minutes": 0.43
+    },
     {
       "date": "2026-11-02",
       "sha": "1d911df",
