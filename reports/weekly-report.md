@@ -1,6 +1,6 @@
 # DORA Weekly Report
 
-Generated: 2026-11-02T08:41:15.987818+00:00
+Generated: 2026-11-02T08:44:24.125094+00:00
 
 ## Metrics
 
