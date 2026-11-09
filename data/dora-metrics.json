@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-02T09:09:31.384434+00:00",
+  "generated_at": "2026-11-09T05:16:16.189588+00:00",
   "period": {
-    "start": "2026-10-26T09:09:31.384434+00:00",
-    "end": "2026-11-02T09:09:31.384434+00:00"
+    "start": "2026-11-02T05:16:16.189588+00:00",
+    "end": "2026-11-09T05:16:16.189588+00:00"
   },
   "metrics": {
     "lead_time_minutes": 0.45,
-    "deployment_frequency": 14,
+    "deployment_frequency": 7,
     "mttr_minutes": 0,
     "change_failure_rate": 0.0
   },
@@ -52,48 +52,6 @@
       "sha": "a2a08dd",
       "status": "success",
       "lead_time_minutes": 0.33
-    },
-    {
-      "date": "2026-11-01",
-      "sha": "82a4484",
-      "status": "success",
-      "lead_time_minutes": 0.4
-    },
-    {
-      "date": "2026-11-01",
-      "sha": "bd0b774",
-      "status": "success",
-      "lead_time_minutes": 0.35
-    },
-    {
-      "date": "2026-11-01",
-      "sha": "dc93f2c",
-      "status": "success",
-      "lead_time_minutes": 0.4
-    },
-    {
-      "date": "2026-11-01",
-      "sha": "2ac3a30",
-      "status": "success",
-      "lead_time_minutes": 0.58
-    },
-    {
-      "date": "2026-11-01",
-      "sha": "ca712a6",
-      "status": "success",
-      "lead_time_minutes": 0.65
-    },
-    {
-      "date": "2026-11-01",
-      "sha": "1488cb4",
-      "status": "success",
-      "lead_time_minutes": 0.38
-    },
-    {
-      "date": "2026-11-01",
-      "sha": "fe84be3",
-      "status": "success",
-      "lead_time_minutes": 0.4
     }
   ],
   "failed_deployments": []
