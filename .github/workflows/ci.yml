@@ -1,0 +1,38 @@
+
+name: Spring Boot Matrix CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test ${{ matrix.java }} / ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            java: '17'
+          - os: windows-latest
+            java: '21'
+          - os: windows-latest
+            java: '25'
+          - os: macos-latest
+            java: '17'
+          - os: macos-latest
+            java: '21'
+          - os: macos-latest
+            java: '25'
+
+    uses: ./.github/workflows/reusable-ci.yml
+
+    with:
+      runner: ${{ matrix.os }}
+      java-version: ${{ matrix.java }}
