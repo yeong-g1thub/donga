@@ -1,0 +1,33 @@
+
+name: Reusable Spring Boot CI
+
+on:
+  workflow_call:
+    inputs:
+      runner:
+        required: true
+        type: string
+
+      java-version:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ${{ inputs.runner }}
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Java and Gradle
+        uses: ./.github/actions/gradle-setup
+        with:
+          java-version: ${{ inputs.java-version }}
+
+      - name: Run Gradle Test
+        shell: bash
+        run: ./gradlew clean test
