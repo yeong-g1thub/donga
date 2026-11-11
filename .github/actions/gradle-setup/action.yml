@@ -1,0 +1,21 @@
+
+name: Java and Gradle Setup
+description: Setup Java and enable Gradle caching
+
+inputs:
+  java-version:
+    description: Java version
+    required: true
+
+runs:
+  using: composite
+
+  steps:
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: ${{ inputs.java-version }}
+
+    - name: Setup Gradle Cache
+      uses: gradle/actions/setup-gradle@v4
